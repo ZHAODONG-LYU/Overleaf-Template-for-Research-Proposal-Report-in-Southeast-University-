@@ -30,8 +30,10 @@
 \usepackage{fancyhdr}
 \usepackage{titlesec}
 \usepackage[most]{tcolorbox}
+\usepackage{framed}
 \usepackage{lipsum}
 \usepackage[numbers,sort&compress]{natbib}
+\usepackage{url}
 \renewcommand{\bibsection}{}
 
 
@@ -60,25 +62,10 @@
 \end{minipage}%
 }
 
-\tcbset{
-    reportbox/.style={
-        enhanced,
-        breakable,
-        width=\textwidth,
-        colback=white,
-        colframe=black,
-        boxrule=0.4pt,
-        arc=0pt,
-        outer arc=0pt,
-        boxsep=0pt,
-        left=0pt,
-        right=0pt,
-        top=0pt,
-        bottom=0pt,
-        before skip=-\arrayrulewidth,
-        after skip=0pt
-    }
-}
+\newenvironment{reportbox}{
+    \def\FrameCommand{\fboxsep=8pt\fboxrule=0.4pt\fbox}%
+    \MakeFramed{\advance\hsize-\width \FrameRestore}}
+    {\endMakeFramed}
 
 \begin{document}
 
@@ -137,41 +124,39 @@
 \section*{一、学位论文开题报告}
 
 \noindent
-\begin{tabularx}{\textwidth}{|C{1.7cm}|Y|Y|Y|Y|C{1.3cm}|Y|C{1.7cm}|C{1.3cm}|Y|}
-    \hline
-    论文题目 & \multicolumn{9}{|l|}{\hspace{0.6em}xxx} \\ \hline
-    研究方向 & \multicolumn{9}{|l|}{\hspace{0.6em}xxx} \\ \hline
-    
-    \multirow{2}{*}{题目来源}
-    & 国家 & 部委 & 省 & 市 & 厂、矿 & 自选 & 有无合同 & 经费数 & 备注 \\ \cline{2-10}
-    & & & & & & & & & \\ \hline
-    
-    题目类型
-    & \zihao{5}理论研究 & \zihao{5}应用研究 & \zihao{5}工程技术 & \zihao{-5}跨学科研究 & \zihao{5}其他  & \multicolumn{4}{|l|}{\hspace{0.6em}xxx} \\ \hline
+\begin{tabularx}{\textwidth}{|C{1.7cm}|C{1.0cm}|C{1.0cm}|C{1.0cm}|C{1.2cm}|C{1.2cm}|C{1.0cm}|C{1.0cm}|C{1.3cm}|Y|}
+	\hline
+	论文题目 & \multicolumn{9}{c|}{\hspace{0.6em}信息不完备条件下交通充电设施负荷预测与控制方法研究} \\ \hline
+	研究方向 & \multicolumn{9}{c|}{\hspace{0.6em}交通运输工程} \\ \hline
+	
+	\multirow{2.5}{*}{题目来源}
+	& 国家 & 部委 & 省 & 市 & 厂、矿 & 自选 & 有无合同 & 经费数 & 备注 \\ \cline{2-10}
+	& & & & & & & & & \\ \hline
+	
+	题目类型
+	& \zihao{5}理论研究 & \zihao{5}应用研究 & \zihao{5}工程技术 & \zihao{5}跨学科研究 & \zihao{5}其他  & \multicolumn{4}{c|}{\hspace{0.6em}\zihao{5}应用研究} \\ \hline
 \end{tabularx}
 
 \vspace{-\arrayrulewidth}
 \noindent
-\begin{tcolorbox}[reportbox]
-    \begin{center}
-    \vspace{0.45em}
-    \textbf{开题报告内容}
-    （具体要求见《东南大学研究生论文选题和开题报告的原则和要求》）
-    \vspace{0.45em}
-    \end{center}
-
-    \vspace{-0.2em}
-    \hrule
-    \vspace{0.8em}
-
-    \begingroup
-        \small
-        \setlength{\leftskip}{1.2em}
-        \setlength{\rightskip}{1.2em}
-        \setlength{\parindent}{2em}
-        \setlength{\parskip}{0.45em}
-        
-        \noindent\textbf{一、立题依据及价值}
+\begin{reportbox}
+	\begin{center}
+		\vspace{0.45em}
+		\zihao{-4}{\textbf{开题报告内容}（具体要求见《东南大学研究生论文选题和开题报告的原则和要求》）}
+	\end{center}
+	
+	\vspace{-0.2em}
+	\hrule
+	\vspace{0.8em}
+	
+	\begingroup
+	\setlength{\leftskip}{0.6em}
+	\setlength{\rightskip}{0.6em}
+	\setlength{\parindent}{2em}
+	\setlength{\parskip}{0.06em}
+	\vspace{0.25em}
+	\noindent\textbf{一、立题依据及价值}
+	\vspace{0.25em}
         
         \lipsum[1]
         
@@ -191,17 +176,19 @@
         
         \lipsum[1]
         \cite{zhang2023ev}
+        \cite{wang2021evol}
         
         \vspace{0.8em}
-        \noindent \textbf{参考文献}
-        
-        \vspace{0.3em}
-        \noindent
-        \begin{minipage}{0.90\linewidth}
-        % \footnotesize
-        \bibliographystyle{IEEEtran}
-        \bibliography{ref}
-        \end{minipage}
+            \noindent \textbf{参考文献}
+            
+            \vspace{0.3em}
+            \noindent
+            % \begin{minipage}{0.90\linewidth}
+            %     \small
+            \setlength{\bibsep}{0pt}
+            \bibliographystyle{gbt7714-numerical}
+            \bibliography{ref}
+            %\end{minipage}
         
         
         \vfill
@@ -214,7 +201,7 @@
         \end{flushright}
         \vspace{0.4em}
     \endgroup
-\end{tcolorbox}
+\end{reportbox}
 
 \vspace{0.5em}
 （注：本页不够可附页）
